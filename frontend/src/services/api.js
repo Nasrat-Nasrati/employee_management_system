@@ -2,11 +2,21 @@ import axios from 'axios';
 
 const API_URL = 'http://localhost:8000/api'; // آدرس بک‌اند جنگو
 
-// تابع لاگین
-export async function login(username, password) {
-  const response = await axios.post(`${API_URL}/auth/`, { username, password });
-  return response.data;  // اینجا token برمی‌گردد
-}
+const API_BASE_URL = 'http://localhost:8000/api';
+
+const login = async (username, password) => {
+  const response = await fetch(`${API_BASE_URL}/auth/`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ username, password }),
+  });
+  return response.json();
+};
+
+export { login };
+
+
+
 
 // گرفتن لیست کارمندان
 export async function getEmployees(token) {
