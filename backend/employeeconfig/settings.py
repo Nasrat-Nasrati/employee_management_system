@@ -39,10 +39,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # my custom application
     'employee',
+    'corsheaders',
+    'rest_framework',
+    'rest_framework.authtoken',
+
 
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',  # 👈 Add this FIRST
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -138,3 +143,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # this is used for the saving media
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}
