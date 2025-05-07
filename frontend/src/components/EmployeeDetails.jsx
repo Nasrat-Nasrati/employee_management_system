@@ -1,14 +1,19 @@
 
+import { ReactToPrint } from 'react-to-print';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
+
 import { useParams, useNavigate } from 'react-router-dom';
 import './EmployeeDetails.css'; // فایل CSS جداگانه
+
+
 
 function EmployeeDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [employee, setEmployee] = useState(null);
   const [error, setError] = useState('');
+  const componentRef = useRef(); // 🔹 Ref for printing
 
   useEffect(() => {
     const fetchEmployeeDetails = async () => {
@@ -39,17 +44,12 @@ function EmployeeDetails() {
     <div className="employee-details-container">
       <h2> Details of : {employee.first_name} {employee.last_name}</h2>
 
-      <div className="profile-card">
+      <div className="profile-card" ref={componentRef}>
       <img 
   src={employee.profile_picture ? employee.profile_picture : '/default-profile.png'} 
   alt="Employee" 
   className="profile-pic"
 />
-
-
-
-
-
         <div className="profile-info">
           <p><strong>Email Address:</strong> {employee.email}</p>
           <p><strong> Phone Number:</strong> {employee.phone}</p>
@@ -57,16 +57,13 @@ function EmployeeDetails() {
           <p><strong>Salary:</strong> ${employee.salary}</p>
           <p><strong>Hire Date :</strong> {employee.hire_date}</p>
         </div>
-
-        <button onClick={() => window.print()} className="btn btn-primary">
-  Print Employee Record
-</button>
-
       </div>
 
+    
       <button onClick={() => navigate(-1)} className="back-btn">  Return to employee list</button>
     </div>
   );
 }
 
 export default EmployeeDetails;
+

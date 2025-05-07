@@ -53,6 +53,7 @@ function EmployeeList() {
   };
 
   return (
+
     <div className="employee-list-container">
       <h2>Employee List</h2>
       {error && <div className="error-message">{error}</div>}
@@ -102,8 +103,22 @@ function EmployeeList() {
           )}
         </tbody>
       </table>
+      <button
+  className="btn btn-info create-button"
+  onClick={() => navigate('/create-employee')}
+>
+  ➕ Create New Employee
+</button>
+
     </div>
+
+    
+   
   );
+
+  
 }
+
+
 
 export default EmployeeList;
