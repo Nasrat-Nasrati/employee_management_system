@@ -86,13 +86,25 @@ WSGI_APPLICATION = 'employeeconfig.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'employee',
+#         'USER': 'employee',
+#         'PASSWORD': 'employee',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'employee',
-        'USER': 'employee',
-        'PASSWORD': 'employee',
-        'HOST': 'localhost',
+        'NAME': 'mydb',
+        'USER': 'myuser',
+        'PASSWORD': 'mypass',
+        'HOST': 'db',  # 🔴 نه localhost! چون PostgreSQL در یک کانتینر دیگر است
         'PORT': '5432',
     }
 }
