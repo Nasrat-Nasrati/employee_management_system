@@ -5,7 +5,11 @@ from django.db import models
 class Employee(models.Model):
     # عکس پروفایل (اختیاری)
     profile_picture = models.ImageField(upload_to='employee_profiles/', null=True, blank=True)
-
+    @property
+    def photo_url(self):
+        if self.photo:
+            return self.photo.url
+        return ''
     # اطلاعات شخصی
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)

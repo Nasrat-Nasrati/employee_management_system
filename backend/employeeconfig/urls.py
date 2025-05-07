@@ -21,9 +21,7 @@ urlpatterns = [
     path('api/', include('employee.urls')),  # مسیر API های ما
     path('api-auth/', include('rest_framework.urls')),  # برای لاگین پیشفرض DRF
      path('api/auth/', obtain_auth_token),
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
